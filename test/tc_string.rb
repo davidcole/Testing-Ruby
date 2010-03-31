@@ -369,6 +369,12 @@ class StringTest < Test::Unit::TestCase
     assert_equal( 0, 'bad'.oct )
     assert_equal( 255, '0377bad'.oct )
   end
+  
+  def test_replace
+    assert_equal( 'world', 'hello'.replace( 'world' ) )
+    assert_equal( 'world', 'hi'.replace( 'world' ) )
+    assert_equal( 'world', 'Hi there, World!'.replace( 'world' ) )
+  end
 
 end
 
