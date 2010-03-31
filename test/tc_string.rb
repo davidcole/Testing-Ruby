@@ -414,6 +414,24 @@ class StringTest < Test::Unit::TestCase
     assert_equal( '   hello', a )
     assert_nil( 'hello'.rstrip! )
   end
+  
+  def test_scan
+    a = 'cruel world'
+    assert_equal( [ 'cruel', 'world' ], a.scan( /\w+/ ) )
+    assert_equal( [ 'cru', 'el ', 'wor' ], a.scan( /.../ ) )
+    assert_equal( [ [ 'cru' ], [ 'el ' ], [ 'wor' ] ], a.scan( /(...)/ ) )
+    assert_equal( [ [ 'cr', 'ue' ], [ 'l ', 'wo' ] ], a.scan( /(..)(..)/ ) )
+  end
 
 end
+
+
+
+
+
+
+
+
+
+
 
