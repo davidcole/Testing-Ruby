@@ -375,6 +375,16 @@ class StringTest < Test::Unit::TestCase
     assert_equal( 'world', 'hi'.replace( 'world' ) )
     assert_equal( 'world', 'Hi there, World!'.replace( 'world' ) )
   end
+  
+  def test_reverse
+    assert_equal( 'desserts', 'stressed'.reverse )
+  end
+  
+  def test_reverse!
+    a = 'stressed'
+    a.reverse!
+    assert_equal( 'desserts', a )
+  end
 
 end
 
