@@ -96,20 +96,20 @@ class StringTest < Test::Unit::TestCase
     assert_equal( 'Hexyzllo', a )
   end
   
-  def test_method_capitalize
+  def test_capitalize
     assert_equal( 'hello'.capitalize, 'Hello' )
     assert_equal( 'HELLO'.capitalize, 'Hello' )
     assert_equal( '123abc'.capitalize, '123abc' )
     assert_equal( 'Hello'.capitalize, 'Hello' )
   end
   
-  def test_method_capitalize!
+  def test_capitalize!
     cap = 'hello'
     cap.capitalize!
     assert_equal( 'Hello', cap )
   end
   
-  def test_method_casecmp
+  def test_casecmp
     assert_equal( 1, 'abcdef'.casecmp( 'abcde' ) )
     assert_equal( 0, 'abcdef'.casecmp( 'abcdef' ) )
     assert_equal( 0, 'aBcDeF'.casecmp( 'abcdef' ) )
@@ -117,7 +117,7 @@ class StringTest < Test::Unit::TestCase
     assert_equal( 0, 'abcdef'.casecmp( 'ABCDEF' ) )
   end
   
-  def test_method_center
+  def test_center
     assert_equal( 'hello', 'hello'.center( 4 ) )
     assert_equal( '       hello        ', 'hello'.center( 20 ) )
     assert_equal( 'hello', 'hello'.center( 4, '_-^-' ) )
@@ -125,7 +125,7 @@ class StringTest < Test::Unit::TestCase
     assert_equal( '-------hello--------', 'hello'.center( 20, '-' ) )
   end
   
-  def test_method_chomp
+  def test_chomp
     assert_equal( 'hello', 'hello'.chomp )
     assert_equal( 'hello', "hello\n".chomp )
     assert_equal( 'hello', "hello\r\n".chomp )
@@ -135,7 +135,7 @@ class StringTest < Test::Unit::TestCase
     assert_equal( 'he', "hello".chomp( 'llo' ) )
   end
   
-  def test_method_chomp!
+  def test_chomp!
     a = "hello\n"
     a.chomp!
     assert_equal( 'hello', a )
@@ -143,7 +143,7 @@ class StringTest < Test::Unit::TestCase
     assert_nil( a )
   end
   
-  def test_method_chop
+  def test_chop
     assert_equal( 'string', "string\r\n".chop )
     assert_equal( "string\n", "string\n\r".chop )
     assert_equal( 'string', "string\n".chop )
@@ -152,21 +152,21 @@ class StringTest < Test::Unit::TestCase
     assert_equal( '', 'x'.chop.chop )
   end
   
-  def test_method_chop!
+  def test_chop!
     a = "string\n"
     a.chop!
     assert_equal( 'string', a )
     assert_nil( ''.chop! )
   end
   
-  def test_method_concat
+  def test_concat
     a = 'Hello, '
     a.concat( 'World' )
     a.concat( 33 )
     assert_equal( a, 'Hello, World!' )
   end
   
-  def test_method_count
+  def test_count
     a = 'Hello, World!'
     assert_equal( 5, a.count( 'lo' ) )
     assert_equal( 2, a.count( 'lo', 'o' ) )
@@ -174,42 +174,42 @@ class StringTest < Test::Unit::TestCase
     assert_equal( 4, a.count( 'e-m' ) )
   end
   
-  def test_method_crypt
+  def test_crypt
     assert_equal( 'shRK3aVg8FsI2', 'secret'.crypt( 'sh' ) )
     assert_equal( '_.a7BFdN8zXW6', 'secret'.crypt( '_...0abcd' ) )
   end
   
-  def test_method_delete
+  def test_delete
     assert_equal( 'heo', 'hello'.delete( 'l', 'lo' ) )
     assert_equal( 'he', 'hello'.delete( 'lo' ) )
     assert_equal( 'hell', 'hello'.delete( 'aeiou', '^e' ) )
     assert_equal( 'ho', 'hello'.delete( 'ej-m' ) )
   end
   
-  def test_method_delete!
+  def test_delete!
     a = 'hello'
     a.delete!( 'l', 'lo' )
     assert_equal( 'heo', a )
     assert_nil( 'a'.delete!( 'l' ) )
   end
   
-  def test_method_downcase
+  def test_downcase
     assert_equal( 'hello', 'hElLo'.downcase )
   end
   
-  def test_method_downcase!
+  def test_downcase!
     a = 'hElLo'
     a.downcase!
     assert_equal( 'hello', a )
     assert_nil( a.downcase! )
   end
   
-  def test_method_dump
+  def test_dump
     assert_equal( '"hello"', 'hello'.dump )
     assert_equal( '"hello\nthere"', "hello\nthere".dump )
   end
   
-  def test_method_each
+  def test_each
     pieces = []
     "hello\nworld".each do | s |
       pieces << s
@@ -234,7 +234,7 @@ class StringTest < Test::Unit::TestCase
     assert_equal( 'world', pieces[1] )
   end
   
-  def test_method_each_line
+  def test_each_line
     pieces = []
     "hello\nworld".each_line do | s |
       pieces << s
@@ -259,7 +259,7 @@ class StringTest < Test::Unit::TestCase
     assert_equal( 'world', pieces[1] )
   end
   
-  def test_method_each_byte
+  def test_each_byte
     pieces = []
     "hello".each_byte do | s |
       pieces << s
@@ -271,30 +271,30 @@ class StringTest < Test::Unit::TestCase
     assert_equal( 111, pieces[4] ) 
   end
   
-  def test_method_empty?
+  def test_empty?
     assert( ! 'hello'.empty? )
     assert( ''.empty? )
   end
   
-  def test_method_eql?
+  def test_eql?
     assert( ! 'cat'.eql?( 'dog' ) )
     assert( 'cat'.eql?( 'cat' ) )
   end
   
-  def test_method_gsub
+  def test_gsub
     assert_equal( 'h*ll*', 'hello'.gsub( /[aeiou]/, '*' ) )
     assert_equal( 'h<e>ll<o>', 'hello'.gsub( /([aeiou])/, '<\1>' ) )
     assert_equal( '104 101 108 108 111 ', 'hello'.gsub( /./ ) { | s | s[ 0 ].to_s + ' ' } )
   end
   
-  def test_method_gsub!
+  def test_gsub!
     a = 'hello'
     a.gsub!( /[aeiou]/, '*' )
     assert_equal( 'h*ll*', a )
     assert_nil( a.gsub!( /[aeiou]/, '*' ) )
   end
   
-  def test_method_hex
+  def test_hex
     assert_equal( 10, '0x0a'.hex )
     assert_equal( 10, '0a'.hex )
     assert_equal( -4660, '-1234'.hex )
@@ -302,13 +302,13 @@ class StringTest < Test::Unit::TestCase
     assert_equal( 0, 'wombat'.hex )
   end
   
-  def test_method_include?
+  def test_include?
     assert( 'hello'.include?( 'lo' ) )
     assert( ! 'hello'.include?( 'ol' ) )
     assert( 'hello'.include?( ?h ) )
   end
   
-  def test_method_index
+  def test_index
     assert_equal( 1, 'Hello, World!'.index( 'e' ) )
     assert_equal( 3, 'Hello, World!'.index( 'lo' ) )
     assert_equal( 8, 'Hello, World!'.index( 'o', 5 ) )
@@ -317,7 +317,7 @@ class StringTest < Test::Unit::TestCase
     assert_equal( 8, 'Hello, World!'.index( /[aeiou]/, -6 ) )
   end
   
-  def test_method_insert
+  def test_insert
     assert_equal( 'Xabcd', 'abcd'.insert( 0, 'X' ) )
     assert_equal( 'abcXd', 'abcd'.insert( 3, 'X' ) )
     assert_equal( 'abcdX', 'abcd'.insert( 4, 'X' ) )
@@ -327,43 +327,43 @@ class StringTest < Test::Unit::TestCase
     assert_raise( IndexError ) { 'abcd'.insert( 13, 'X' ) }
   end
   
-  def test_method_intern
+  def test_intern
     assert_equal( :koala, 'koala'.intern )
     sym = '$1.50 for a soda?!?!'.intern
     assert_equal( '$1.50 for a soda?!?!', sym.to_s )
   end
 
-  def test_method_length
+  def test_length
     assert_equal( 13, 'Hello, World!'.length )
   end
   
-  def test_method_ljust
+  def test_ljust
     assert_equal( 'hello', 'hello'.ljust( 4 ) )
     assert_equal( 'hello               ', 'hello'.ljust( 20 ) )
     assert_equal( 'hello***************', 'hello'.ljust( 20, '*' ) )
     assert_equal( 'hello dolly dolly do', 'hello'.ljust( 20, ' dolly' ) )
   end
   
-  def test_method_lstrip
+  def test_lstrip
     assert_equal( 'hello   ', '   hello   '.lstrip )
     assert_equal( "\000 hello   ", "\000 hello   ".lstrip )
     assert_equal( 'hello', 'hello'.lstrip )
   end
   
-  def test_method_lstrip!
+  def test_lstrip!
     a = '   hello   '
     a.lstrip!
     assert_equal( 'hello   ', a )
     assert_nil( 'hello'.lstrip! )
   end
   
-  def test_method_match
+  def test_match
     assert_equal( 'll', 'hello'.match( '(.)\1' )[ 0 ] )
     assert_equal( 'l', 'hello'.match( '(.)\1' )[ 1 ] )
     assert_nil( 'hello'.match( 'xx' ) )
   end
   
-  def test_method_oct
+  def test_oct
     assert_equal( 83, '123'.oct )
     assert_equal( -255, '-377'.oct )
     assert_equal( 0, 'bad'.oct )
