@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby -w
+
 $:.unshift File.join( File.dirname( __FILE__ ), '..', 'lib' )
 
 require 'test/unit'
@@ -359,6 +361,13 @@ class StringTest < Test::Unit::TestCase
     assert_equal( 'll', 'hello'.match( '(.)\1' )[ 0 ] )
     assert_equal( 'l', 'hello'.match( '(.)\1' )[ 1 ] )
     assert_nil( 'hello'.match( 'xx' ) )
+  end
+  
+  def test_method_oct
+    assert_equal( 83, '123'.oct )
+    assert_equal( -255, '-377'.oct )
+    assert_equal( 0, 'bad'.oct )
+    assert_equal( 255, '0377bad'.oct )
   end
 
 end
