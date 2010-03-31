@@ -401,6 +401,19 @@ class StringTest < Test::Unit::TestCase
     assert_equal( '---------------hello', 'hello'.rjust( 20, '-' ) )
     assert_equal( 'paddingpaddingphello', 'hello'.rjust( 20, 'padding' ) )
   end
+  
+  def test_rstrip
+    assert_equal( '  hello', '  hello  '.rstrip )
+    assert_equal( "  hello \000", "  hello \000 " .rstrip )
+    assert_equal( 'hello', 'hello'.rstrip )
+  end
+  
+  def test_rstrip!
+    a = '   hello   '
+    a.rstrip!
+    assert_equal( '   hello', a )
+    assert_nil( 'hello'.rstrip! )
+  end
 
 end
 
