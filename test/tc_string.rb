@@ -394,6 +394,13 @@ class StringTest < Test::Unit::TestCase
     assert_equal( 1, 'hello'.rindex( /[aeiou]/, -2 ) )
     assert_equal( 4, 'hello'.rindex( /[aeiou]/ ) )
   end
+  
+  def test_rjust
+    assert_equal( 'hello', 'hello'.rjust( 4 ) )
+    assert_equal( '               hello', 'hello'.rjust( 20 ) )
+    assert_equal( '---------------hello', 'hello'.rjust( 20, '-' ) )
+    assert_equal( 'paddingpaddingphello', 'hello'.rjust( 20, 'padding' ) )
+  end
 
 end
 
