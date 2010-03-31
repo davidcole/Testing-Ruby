@@ -385,6 +385,15 @@ class StringTest < Test::Unit::TestCase
     a.reverse!
     assert_equal( 'desserts', a )
   end
+  
+  def test_rindex
+    assert_equal( 1, 'hello'.rindex( 'e' ) )
+    assert_equal( 3, 'hello'.rindex( 'l' ) )
+    assert_nil( 'hello'.rindex( 'a' ) )
+    assert_equal( 1, 'hello'.rindex( 101 ) )
+    assert_equal( 1, 'hello'.rindex( /[aeiou]/, -2 ) )
+    assert_equal( 4, 'hello'.rindex( /[aeiou]/ ) )
+  end
 
 end
 
