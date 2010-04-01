@@ -421,6 +421,13 @@ class StringTest < Test::Unit::TestCase
     assert_equal( [ 'cru', 'el ', 'wor' ], a.scan( /.../ ) )
     assert_equal( [ [ 'cru' ], [ 'el ' ], [ 'wor' ] ], a.scan( /(...)/ ) )
     assert_equal( [ [ 'cr', 'ue' ], [ 'l ', 'wo' ] ], a.scan( /(..)(..)/ ) )
+    
+    matches = ''
+    a.scan( /\w+/ ) { | w | matches << "<<#{w}>> " }
+    assert_equal( '<<cruel>> <<world>> ', matches )
+    matches = ''
+    a.scan( /(.)(.)/ ) { | b, c | matches << c + b }
+    assert_equal( 'rceu lowlr', matches )
   end
 
 end
