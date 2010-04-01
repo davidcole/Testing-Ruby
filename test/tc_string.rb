@@ -430,6 +430,10 @@ class StringTest < Test::Unit::TestCase
     assert_equal( 'rceu lowlr', matches )
   end
 
+  def test_size
+    assert_equal( 13, 'Hello, World!'.size )
+  end
+
 end
 
 
