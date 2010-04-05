@@ -433,10 +433,48 @@ class StringTest < Test::Unit::TestCase
   def test_size
     assert_equal( 13, 'Hello, World!'.size )
   end
+  
+  def test_slice
+    a = 'Hello, there!'
+    assert_equal( 101, a.slice( 1 ) )
+    assert_equal( 'ell', a.slice( 1, 3 ) )
+    assert_equal( 'ell', a.slice( 1..3 ) )
+    assert_equal( 're', a.slice( -3, 2 ) )
+    assert_equal( 'ere', a.slice( -4..-2 ) )
+    assert_equal( '', a.slice( -2..-4 ) )
+    assert_equal( 'the', a.slice( /th[aeiou]/ ) )
+    assert_equal( 'lo', a.slice( 'lo' ) )
+    assert_nil( a.slice( 'bye' ) )
+    assert_raise( LocalJumpError, a.slice( 42 ) )
+    assert_raise( LocalJumpError, a.slice( 42..43 ) )
+  end
+  
+  def test_slice!
+    a = 'Hello, there!'
+    a.slice!( 1 )
+    assert_equal( 'Hllo, there!', a )
+    a = 'Hello, there!'
+    a.slice!( 3..6 )
+    assert_equal( 'Helthere!', a )
+    a = 'Hello, there!'
+    a.slice!( /e.*t/ )
+    assert_equal( 'Hhere!', a )
+    a = 'Hello, there!'
+    a.slice!( 'r' )
+    assert_equal( 'Hello, thee!', a )
+    
+    string = "this is a string"
+    assert_equal( 105, string.slice!( 2 ) )
+    assert_equal( ' is ', string.slice!( 3..6 ) )
+    assert_equal( 'sa st', string.slice!( /s.*t/ ) )
+    assert_equal( 'r', string.slice!( 'r' ) )
+    assert_equal( 'thing', string )
+    
+    assert_raise( LocalJumpError, a.slice( 42 ) )
+    assert_raise( LocalJumpError, a.slice( 42..43 ) )
+  end
 
 end
-
-
 
 
 
