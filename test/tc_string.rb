@@ -473,6 +473,26 @@ class StringTest < Test::Unit::TestCase
     assert_raise( LocalJumpError, a.slice( 42 ) )
     assert_raise( LocalJumpError, a.slice( 42..43 ) )
   end
+  
+  def test_split
+    assert_equal( [ 'now', 'is', 'the', 'time' ], 'now is the         time'.split )
+    assert_equal( [ 'now', 'is', 'the', 'time' ], 'now is the         time'.split( ' ' ) )
+    assert_equal( [ 'now', 'is', 'the', '', '', '', '', '', '', '', '', 'time' ], 'now is the         time'.split( / / ) )
+    
+    assert_equal( [ 'a', 'bb', 'ccc' ], 'a@1bb@2ccc'.split( /@\d/ ) )
+    assert_equal( [ 'a', '1', 'bb', '2', 'ccc' ], 'a@1bb@2ccc'.split( /@(\d)/ ) )
+    assert_equal( [ '1', '2.34', '56', '7' ], '1, 2.34,56, 7'.split( /,\s*/ ) )
+    assert_equal( [ 'h', 'e', 'l', 'l', 'o' ], 'hello'.split( // ) )
+    assert_equal( [ 'h', 'e', 'llo' ], 'hello'.split( //, 3 ) )
+    assert_equal( [ 'h', 'i', 'm', 'o', 'm' ], 'hi mom'.split( /\s*/ ) )
+    
+    assert_equal( [ ], ''.split )
+    
+    assert_equal( [ 'm', 'w y', 'w' ], 'mellow yellow'.split( 'ello' ) )
+    assert_equal( [ '1', '2', '', '3', '4' ], '1,2,,3,4,,'.split( ',' ) )
+    assert_equal( [ '1', '2', '', '3,4,,' ], '1,2,,3,4,,'.split( ',', 4 ) )
+    assert_equal( [ '1', '2', '', '3', '4', '', '' ], '1,2,,3,4,,'.split( ',', -4 ) )
+  end
 
 end
 
