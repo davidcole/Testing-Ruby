@@ -616,6 +616,22 @@ class StringTest < Test::Unit::TestCase
     assert_equal( 1408, 'now is the time'.sum )
     assert_equal( 128, 'now is the time'.sum( 8 ) )
   end
+  
+  def test_swapcase
+    assert_equal( 'hELLO', 'Hello'.swapcase )
+    assert_equal( 'CyBeR_pUnK11', 'cYbEr_PuNk11'.swapcase )
+  end
+  
+  def test_swapcase!
+    a = 'Hello'
+    a.swapcase!
+    assert_equal( 'hELLO', a )
+    a = 'cYbEr_PuNk11'
+    a.swapcase!
+    assert_equal( 'CyBeR_pUnK11', a )
+    
+    assert_nil( ''.swapcase! )
+  end
 
 end
 
