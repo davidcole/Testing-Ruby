@@ -514,6 +514,20 @@ class StringTest < Test::Unit::TestCase
     a = ''
     assert_raise( LocalJumpError, a.squeeze! )
   end
+  
+  def test_strip
+    assert_equal( 'hello', '  hello  '.strip )
+    assert_equal( 'hello', "\thello\r\n" .strip )
+    assert_equal( 'hello \000', 'hello \000'.strip )
+    assert_equal( 'hello', 'hello'.strip )
+  end
+  
+  def test_strip!
+    a = '   hello   '
+    a.strip!
+    assert_equal( 'hello', a )
+    assert_nil( 'hello'.strip! )
+  end
 
 end
 
