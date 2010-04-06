@@ -528,6 +528,29 @@ class StringTest < Test::Unit::TestCase
     assert_equal( 'hello', a )
     assert_nil( 'hello'.strip! )
   end
+  
+  def test_sub
+    assert_equal( 'h*llo', 'hello'.sub( /[aeiou]/, '*' ) )
+    assert_equal( 'h<e>llo', 'hello'.sub( /([aeiou])/, '<\1>' ) )
+    assert_equal( '104 ello', 'hello'.sub( /./ ){ | s | s[0].to_s + ' ' } )
+  end
+  
+  def test_sub!
+    a = 'hello'
+    a.sub!( /[aeiou]/, '*' )
+    assert_equal( 'h*llo', a )
+    
+    a = 'hello'
+    a.sub!( /([aeiou])/, '<\1>' )
+    assert_equal( 'h<e>llo', a )
+    
+    a = 'hello'
+    a.sub!( /./ ){ | s | s[0].to_s + ' ' }
+    assert_equal( '104 ello', a )
+    
+    a = ''
+    assert_raise( LocalJumpError, a.sub!( /[aeiou]/, '*' ) )
+  end
 
 end
 
