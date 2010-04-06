@@ -493,6 +493,27 @@ class StringTest < Test::Unit::TestCase
     assert_equal( [ '1', '2', '', '3,4,,' ], '1,2,,3,4,,'.split( ',', 4 ) )
     assert_equal( [ '1', '2', '', '3', '4', '', '' ], '1,2,,3,4,,'.split( ',', -4 ) )
   end
+  
+  def test_squeeze
+    assert_equal( 'yelow mon', 'yellow moon'.squeeze )
+    assert_equal( ' now is the', '   now   is   the'.squeeze( ' ' ) )
+    assert_equal( 'puters put balls', 'putters putt balls'.squeeze( 'm-z' ) )
+  end
+  
+  def test_squeeze!
+    a = 'yellow moon'
+    a.squeeze!
+    assert_equal( 'yelow mon', a )
+    a = '   now   is   the'
+    a.squeeze!
+    assert_equal( ' now is the', a )
+    a = 'putters putt balls'
+    a.squeeze!( 'm-z' )
+    assert_equal( 'puters put balls', a )
+    
+    a = ''
+    assert_raise( LocalJumpError, a.squeeze! )
+  end
 
 end
 
