@@ -611,6 +611,11 @@ class StringTest < Test::Unit::TestCase
     a.succ!
     assert_equal( '**+', a )
   end
+  
+  def test_sum
+    assert_equal( 1408, 'now is the time'.sum )
+    assert_equal( 128, 'now is the time'.sum( 8 ) )
+  end
 
 end
 
