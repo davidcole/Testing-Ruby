@@ -363,6 +363,36 @@ class StringTest < Test::Unit::TestCase
     assert_nil( 'hello'.match( 'xx' ) )
   end
   
+  def test_next
+    assert_equal( 'abce', 'abcd'.next )
+    assert_equal( 'THX1139', 'THX1138'.next )
+    assert_equal( '<<koalb>>', '<<koala>>'.next )
+    assert_equal( '2000aaa', '1999zzz'.next )
+    assert_equal( 'AAAA0000', 'ZZZ9999'.next )
+    assert_equal( '**+', '***'.next )
+  end
+  
+  def test_next!
+    a = 'abcd'
+    a.next!
+    assert_equal( 'abce', a )
+    a = 'THX1138'
+    a.next!
+    assert_equal( 'THX1139', a )
+    a = '<<koala>>'
+    a.next!
+    assert_equal( '<<koalb>>', a )
+    a = '1999zzz'
+    a.next!
+    assert_equal( '2000aaa', a )
+    a = 'ZZZ9999'
+    a.next!
+    assert_equal( 'AAAA0000', a )
+    a = '***'
+    a.next!
+    assert_equal( '**+', a )
+  end
+  
   def test_oct
     assert_equal( 83, '123'.oct )
     assert_equal( -255, '-377'.oct )
@@ -550,6 +580,36 @@ class StringTest < Test::Unit::TestCase
     
     a = ''
     assert_raise( LocalJumpError, a.sub!( /[aeiou]/, '*' ) )
+  end
+  
+  def test_succ
+    assert_equal( 'abce', 'abcd'.succ )
+    assert_equal( 'THX1139', 'THX1138'.succ )
+    assert_equal( '<<koalb>>', '<<koala>>'.succ )
+    assert_equal( '2000aaa', '1999zzz'.succ )
+    assert_equal( 'AAAA0000', 'ZZZ9999'.succ )
+    assert_equal( '**+', '***'.succ )
+  end
+  
+  def test_succ!
+    a = 'abcd'
+    a.succ!
+    assert_equal( 'abce', a )
+    a = 'THX1138'
+    a.succ!
+    assert_equal( 'THX1139', a )
+    a = '<<koala>>'
+    a.succ!
+    assert_equal( '<<koalb>>', a )
+    a = '1999zzz'
+    a.succ!
+    assert_equal( '2000aaa', a )
+    a = 'ZZZ9999'
+    a.succ!
+    assert_equal( 'AAAA0000', a )
+    a = '***'
+    a.succ!
+    assert_equal( '**+', a )
   end
 
 end
